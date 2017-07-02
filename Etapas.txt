@@ -16,8 +16,8 @@ Variáveis:
 
 - Taxa de apredizagem [0.01, 0.1, 0.5, 0.9]
 - Número de nós na camada intermediária [3, 6, 12]
-- Algoritmo de aprendizagem [Olhar o matlab e escolher uns 3 algoritmos]
-- Função de ativação [Olhar o matlab e escolher de umas 3 funções]
+- Algoritmo de aprendizagem [Gradient descent with momentum backpropagation: 'traingdm' ; Resilient backpropagation: 'trainrp'; Levenberg-Marquardt: 'trainlm']
+- Função de ativação [Log-sigmoid transfer function: 'logsig' ; Hyperbolic tangent sigmoid transfer function: 'tansig']
 
 Etapa 1:
 
