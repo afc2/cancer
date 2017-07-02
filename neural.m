@@ -5,6 +5,10 @@ data = csvread('mammography-consolidated.csv');
 class = data(:, end);
 data = data(:, 1:(end - 1));
 
+% Normalize data
+% Values are between 0-1
+data = normalizedata(data);
+ 
 % Split the dataset
 % Training: 50%
 % Validation: 25%
