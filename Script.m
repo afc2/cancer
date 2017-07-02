@@ -40,7 +40,7 @@ rede = init(rede);
 echo on
 %   Parametros do treinamento (para ajuda, digite 'help traingd')
 rede.trainParam.epochs   = 10000;    % Maximo numero de iteracoes (FIXO)
-rede.trainParam.lr       = 0.1;  % Taxa de aprendizado
+rede.trainParam.lr       = 0.01;  % Taxa de aprendizado
 rede.trainParam.goal     = 0;      % Criterio de minimo erro de treinamento (FIXO)
 rede.trainParam.max_fail = 10;      % Criterio de quantidade maxima de falhas na validacao (FIXO)
 rede.trainParam.min_grad = 0;      % Criterio de gradiente minimo (FIXO)
@@ -79,26 +79,7 @@ fprintf('MSE para o conjunto de treinamento: %6.5f \n',desempenho.perf(end));
 fprintf('MSE para o conjunto de validacao: %6.5f \n',desempenho.vperf(end));
 fprintf('MSE para o conjunto de teste: %6.5f \n',desempenhoTeste);
 
-%     Calculando o erro de classificacao para o conjunto de teste
-%     (A regra de classificacao e' winner-takes-all, ou seja, o nodo de saida que gerar o maior valor de saida
-%      corresponde a classe do padrao).
-%     Obs.: Esse erro so' faz sentido se o problema for de classificacao. Para problemas que nao sao de classificacao,
-%           esse trecho do script deve ser eliminado.
-
-[maiorSaidaRede, nodoVencedorRede] = max (saidasRedeTeste);
-[maiorSaidaDesejada, nodoVencedorDesejado] = max (saidasTeste);
-
-%      Obs.: O comando 'max' aplicado a uma matriz gera dois vetores: um contendo os maiores elementos de cada coluna
-%            e outro contendo as linhas onde ocorreram os maiores elementos de cada coluna.
-
-classificacoesErradas = 0;
-
-for padrao = 1 : numTeste;
-    if nodoVencedorRede(padrao) ~= nodoVencedorDesejado(padrao),
-        classificacoesErradas = classificacoesErradas + 1;
-    end
-end
-
-erroClassifTeste = 100 * (classificacoesErradas/numTeste);
-
-fprintf('Erro de classificacao para o conjunto de teste: %6.5f\n',erroClassifTeste);
+lotroc(saidasTeste, saidasRedeTeste)
+[c,cm,ind,per] = confusion(saidasTeste, saidasRedeTeste);
+disp('Confusion Matrix')
+disp(cm) 
