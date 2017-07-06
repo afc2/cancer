@@ -28,7 +28,7 @@ saidasTeste         = dadosTeste((numEntradas + 1):(numEntradas + numSaidas), 1:
 
 matrizFaixa = repmat([0, 1], numEntradas, 1); % Cria 'matrizFaixa', que possui 'numEntradas' linhas, cada uma sendo igual a [0 1].
 
-rede = newff(matrizFaixa,[numEscondidos numSaidas],{'tansig','tansig'},'traingdm','learngdm','mse');
+rede = newff(matrizFaixa,[numEscondidos numSaidas],{'logsig','logsig'},'traingdm','learngdm','mse');
 % matrizFaixa                    : indica que todas as entradas possuem valores na faixa entre 0 e 1
 % [numEscondidos numSaidas]      : indica a quantidade de nodos escondidos e de saida da rede
 % {'logsig','logsig'}            : indica que os nodos das camadas escondida e de saida terao funcao de ativacao sigmoide logistica
@@ -79,7 +79,8 @@ fprintf('MSE para o conjunto de treinamento: %6.5f \n',desempenho.perf(end));
 fprintf('MSE para o conjunto de validacao: %6.5f \n',desempenho.vperf(end));
 fprintf('MSE para o conjunto de teste: %6.5f \n',desempenhoTeste);
 
-lotroc(saidasTeste, saidasRedeTeste)
+
+plotroc(saidasTeste, saidasRedeTeste)
 [c,cm,ind,per] = confusion(saidasTeste, saidasRedeTeste);
 disp('Confusion Matrix')
 disp(cm) 
