@@ -13,9 +13,12 @@ data = normalizedata(data);
 % Training: 50%
 % Validation: 25%
 % Test: 25%
-[training, trainingclass, validation, validationclass, test, testclass] = splitData(data, class);
+%[training, trainingclass, validation, validationclass, test, testclass] = splitData(data, class);
+%[training, trainingclass, validation, validationclass, test, testclass] = oversample(data, class);
+
+[training, trainingclass, validation, validationclass, test, testclass] = undersample(data, class);
 
 % Write to a csv file
-csvwrite('mammography-consolidated-training.csv', [training, trainingclass])
-csvwrite('mammography-consolidated-validation.csv', [validation, validationclass])
-csvwrite('mammography-consolidated-test.csv', [test, testclass])
+csvwrite('mammography-consolidated-training-undersample.csv', [training, trainingclass])
+csvwrite('mammography-consolidated-validation-undersample.csv', [validation, validationclass])
+csvwrite('mammography-consolidated-test-undersample.csv', [test, testclass])
