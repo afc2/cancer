@@ -12,15 +12,15 @@ numTeste      = 2795;    % Numero de padroes de teste
 echo off      
 
 %    Lendo arquivos e armazenando dados em matrizes
-dadosTreinamento    = csvread('mammography-consolidated-training.csv')';    % Lendo arquivo de treinamento
+dadosTreinamento    = csvread('mammography-consolidated-training-undersample.csv')';    % Lendo arquivo de treinamento
 entradasTreinamento = dadosTreinamento(1:numEntradas, 1:numTr);
 saidasTreinamento   = dadosTreinamento((numEntradas + 1):(numEntradas + numSaidas), 1:numTr);
 
-dadosValidacao      = csvread('mammography-consolidated-validation.csv')';    % Mesmo processo para validacao
+dadosValidacao      = csvread('mammography-consolidated-validation-undersample.csv')';    % Mesmo processo para validacao
 entradasValidacao   = dadosValidacao(1:numEntradas, 1:numVal);
 saidasValidacao     = dadosValidacao((numEntradas + 1):(numEntradas + numSaidas), 1:numVal);
 
-dadosTeste          = csvread('mammography-consolidated-test.csv')';      % Mesmo processo para teste
+dadosTeste          = csvread('mammography-consolidated-test-undersample.csv')';      % Mesmo processo para teste
 entradasTeste       = dadosTeste(1:numEntradas, 1:numTeste);
 saidasTeste         = dadosTeste((numEntradas + 1):(numEntradas + numSaidas), 1:numTeste);
 
@@ -82,5 +82,5 @@ fprintf('MSE para o conjunto de teste: %6.5f \n',desempenhoTeste);
 
 plotroc(saidasTeste, saidasRedeTeste)
 [c,cm,ind,per] = confusion(saidasTeste, saidasRedeTeste);
-disp('Confusion Matrix')
+disp('Matriz Confusa: ')
 disp(cm) 

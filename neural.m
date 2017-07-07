@@ -10,7 +10,7 @@ data = data(:, 1:(end - 1));
 data = normalizedata(data);
 
 % SMOTE parameters
-k = 3;
+k = 5;
 
 % Split the dataset
 % Training: 50%
@@ -19,10 +19,11 @@ k = 3;
 %[training, trainingclass, validation, validationclass, test, testclass] = splitData(data, class);
 %[training, trainingclass, validation, validationclass, test, testclass] = oversample(data, class);
 %[training, trainingclass, validation, validationclass, test, testclass] = undersample(data, class);
-[training, trainingclass, validation, validationclass, test, testclass] = smote(data, class, k);
+%[training, trainingclass, validation, validationclass, test, testclass] = smote(data, class, k);
+[training, trainingclass, validation, validationclass, test, testclass] = adaptedsmote(data, class, k);
 
 
 % Write to a csv file
-csvwrite('mammography-consolidated-training-smotek3.csv', [training, trainingclass])
-csvwrite('mammography-consolidated-validation-smotek3.csvv', [validation, validationclass])
-csvwrite('mammography-consolidated-test-smotek3.csv', [test, testclass])
+csvwrite('mammography-consolidated-training-adaptedsmotek5.csv', [training, trainingclass])
+csvwrite('mammography-consolidated-validation-adaptedsmotek5.csvv', [validation, validationclass])
+csvwrite('mammography-consolidated-test-adaptedsmotek5.csv', [test, testclass])
